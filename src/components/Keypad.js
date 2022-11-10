@@ -41,9 +41,9 @@ export default function Keypad({ word, guessedLetters }) {
 
   const getKeyColor = (key) => {
     var bgColor = "bg-gray-300";
-    if (guessedLetters.includes(key) && word.includes(key))
+    if (guessedLetters.includes(key.key) && word.includes(key.key))
       bgColor = "bg-green-300";
-    if (guessedLetters.includes(key) && !word.includes(key))
+    if (guessedLetters.includes(key.key) && !word.includes(key.key))
       bgColor = "bg-red-300";
     return bgColor;
   };
@@ -57,7 +57,8 @@ export default function Keypad({ word, guessedLetters }) {
               <button
                 key={l.key}
                 onClick={(event) => handleButtonClick(event, l.key)}
-                className=" flex-1 cursor-pointer justify-center align-middle "
+                className=" flex-1 cursor-pointer justify-center align-middle disabled:opacity-50"
+                disabled={guessedLetters.includes(l.key)}
               >
                 <div
                   key={l.key}
@@ -78,7 +79,8 @@ export default function Keypad({ word, guessedLetters }) {
               <button
                 key={l.key}
                 onClick={(event) => handleButtonClick(event, l.key)}
-                className=" flex-1 cursor-pointer justify-center align-middle"
+                className=" flex-1 cursor-pointer justify-center align-middle disabled:opacity-50"
+                disabled={guessedLetters.includes(l.key)}
               >
                 <div
                   key={l.key}
@@ -99,7 +101,8 @@ export default function Keypad({ word, guessedLetters }) {
               <button
                 key={l.key}
                 onClick={(event) => handleButtonClick(event, l.key)}
-                className=" flex-1 cursor-pointer justify-center align-middle"
+                className=" flex-1 cursor-pointer justify-center align-middle disabled:opacity-50"
+                disabled={guessedLetters.includes(l.key)}
               >
                 <div
                   key={l.key}

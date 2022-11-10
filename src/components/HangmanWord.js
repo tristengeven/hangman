@@ -6,7 +6,7 @@ export default function HangmanWord({ word, guessedLetters }) {
       {word.split("").map((letter, index) => (
         <div
           key={index}
-          className="border-b-2 border-black w-12 h-14 text-center mt-4"
+          className="border-b-2 border-black w-12 h-14 text-center mt-12"
         >
           <div
             className={`${
