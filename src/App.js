@@ -44,9 +44,9 @@ function App() {
 
   useEffect(() => {
     fetch(
-      `https://random-word-api.herokuapp.com/word?length=${Math.floor(
-        Math.random() * 8
-      )}`
+      `https://random-word-api.herokuapp.com/word?length=${
+        Math.floor(Math.random() * 4) + 4
+      }`
     )
       .then((res) => res.json())
       .then((json) => {
