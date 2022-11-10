@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-
 export default function Keypad({ word, guessedLetters }) {
   const letters = [
     { key: "q", line: "1" },
@@ -30,9 +28,9 @@ export default function Keypad({ word, guessedLetters }) {
     { key: "m", line: "3" },
   ];
 
-  const firstRowLetters = letters.filter((entry) => entry.line == "1");
-  const secondRowLetters = letters.filter((entry) => entry.line == "2");
-  const thirdRowLetters = letters.filter((entry) => entry.line == "3");
+  const firstRowLetters = letters.filter((entry) => entry.line === "1");
+  const secondRowLetters = letters.filter((entry) => entry.line === "2");
+  const thirdRowLetters = letters.filter((entry) => entry.line === "3");
 
   const handleButtonClick = (event, keyPressed) => {
     // console.log(`${keyPressed} clicked`);
