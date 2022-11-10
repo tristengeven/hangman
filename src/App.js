@@ -2,7 +2,7 @@ import "./index.css";
 import HangmanVisual from "./components/HangmanVisual";
 import HangmanWord from "./components/HangmanWord";
 import Keypad from "./components/Keypad";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 const MAX_WRONG_GUESSES = 6;
 
@@ -19,11 +19,14 @@ function App() {
     hangmanWord !== "" &&
     hangmanWord.split("").every((letter) => guessedLetters.includes(letter));
 
-  const addGuessedLetter = (letter) => {
-    if (guessedLetters.includes(letter)) return;
+  const addGuessedLetter = useCallback(
+    (letter) => {
+      if (guessedLetters.includes(letter)) return;
 
-    setGuessedLetters((current) => [...current, letter]);
-  };
+      setGuessedLetters((current) => [...current, letter]);
+    },
+    [guessedLetters]
+  );
 
   useEffect(() => {
     const handleKeyup = (event) => {
@@ -37,7 +40,7 @@ function App() {
       // window.addEventListener("keyup", handleKeyup);
     };
     window.addEventListener("keyup", handleKeyup);
-  }, [guessedLetters]);
+  }, [addGuessedLetter]);
 
   useEffect(() => {
     fetch(
