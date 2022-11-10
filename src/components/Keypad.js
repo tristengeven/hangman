@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function Keypad({}) {
+export default function Keypad({ word, guessedLetters }) {
   const letters = [
     { key: "q", line: "1" },
     { key: "w", line: "1" },
@@ -35,7 +35,17 @@ export default function Keypad({}) {
   const thirdRowLetters = letters.filter((entry) => entry.line == "3");
 
   const handleButtonClick = (event, keyPressed) => {
+    // console.log(`${keyPressed} clicked`);
     window.dispatchEvent(new KeyboardEvent("keyup", { key: keyPressed }));
+  };
+
+  const getKeyColor = (key) => {
+    var bgColor = "bg-gray-300";
+    if (guessedLetters.includes(key) && word.includes(key))
+      bgColor = "bg-green-300";
+    if (guessedLetters.includes(key) && !word.includes(key))
+      bgColor = "bg-red-300";
+    return bgColor;
   };
 
   return (
@@ -51,7 +61,9 @@ export default function Keypad({}) {
               >
                 <div
                   key={l.key}
-                  className=" uppercase font-semibold bg-gray-300 rounded-md  h-[50px] leading-[50px] m-1 "
+                  className={` uppercase font-semibold ${getKeyColor(
+                    l
+                  )} rounded-md  h-[50px] leading-[50px] m-1 `}
                 >
                   {l.key}
                 </div>
@@ -70,7 +82,9 @@ export default function Keypad({}) {
               >
                 <div
                   key={l.key}
-                  className=" uppercase font-semibold bg-gray-300 rounded-md  h-[50px] leading-[50px] m-1 "
+                  className={` uppercase font-semibold ${getKeyColor(
+                    l
+                  )}  rounded-md  h-[50px] leading-[50px] m-1 `}
                 >
                   {l.key}
                 </div>
@@ -89,7 +103,9 @@ export default function Keypad({}) {
               >
                 <div
                   key={l.key}
-                  className=" uppercase font-semibold bg-gray-300 rounded-md  h-[50px] leading-[50px] m-1 "
+                  className={` uppercase font-semibold ${getKeyColor(
+                    l
+                  )} rounded-md  h-[50px] leading-[50px] m-1 `}
                 >
                   {l.key}
                 </div>

@@ -8,7 +8,11 @@ export default function HangmanWord({ word, guessedLetters }) {
           key={index}
           className="border-b-2 border-black w-12 h-14 text-center mt-4"
         >
-          <div className={`${guessedLetters.includes(letter) ? "" : "hidden"}`}>
+          <div
+            className={`${
+              guessedLetters.includes(letter) ? "visible" : "hidden"
+            }`}
+          >
             {letter}
           </div>
         </div>

@@ -6,53 +6,43 @@ import Keypad from "./components/Keypad";
 import { useState, useEffect, useCallback } from "react";
 
 function App() {
-  const [hangmanWord, setHangmanWord] = useState("");
+  const [hangmanWord, setHangmanWord] = useState("tristen");
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [lettersToGuess, setLettersToGuess] = useState([]);
-  const [turn, setTurn] = useState(1);
   const [gameWon, setGameWon] = useState(false);
-  const MAX_TURNS = 10;
 
-  const handleKeyup = ({ key }) => {
-    console.log(key);
-    // check if turns exceeded
-    if (turn > MAX_TURNS) {
-      console.log("no more guesses");
-    }
-    // don't submit duplicate letters
-    if (guessedLetters.includes(key))
-      return () => window.removeEventListener("keyup", handleKeyup);
-    setGuessedLetters((guessedLetters) => [...new Set(guessedLetters), key]);
-    // remove guess from lettersToGuess if present
-    if (lettersToGuess.includes(key)) {
-      const arrayCopy = [...lettersToGuess].filter((element) => {
-        return element !== key;
-      });
-      setLettersToGuess(arrayCopy);
-    }
-    setTurn((prevTurn) => {
-      // increment turn
-      return prevTurn + 1;
-    });
-    window.removeEventListener("keyup", handleKeyup);
-    window.addEventListener("keyup", handleKeyup);
+  const incorrectGuesses = guessedLetters.filter(
+    (letter) => !hangmanWord.includes(letter)
+  );
+
+  const addGuessedLetter = (letter) => {
+    console.log("STARTING ADD GUESSEd");
+    if (guessedLetters.includes(letter)) return;
+
+    setGuessedLetters((current) => [...current, letter]);
+    console.log(guessedLetters);
+    console.log(letter);
   };
 
   useEffect(() => {
+    const handleKeyup = (event) => {
+      window.removeEventListener("keyup", handleKeyup);
+
+      if (!event.key.match(/^[a-z]$/)) return;
+
+      event.preventDefault();
+      console.log("HERE");
+      addGuessedLetter(event.key);
+      // window.addEventListener("keyup", handleKeyup);
+    };
     window.addEventListener("keyup", handleKeyup);
-  }, []);
-
-  useEffect(() => {
-    setHangmanWord("tristen");
-    setLettersToGuess([...new Set(hangmanWord.split(""))]);
-  }, [hangmanWord]);
-
+  }, [guessedLetters]);
   return (
     <div className="h-screen">
       <div className="text-lg text-center mt-2 font-bold">Hangman</div>
-      <HangmanVisual />
+      <HangmanVisual incorrectGuesses={incorrectGuesses.length} />
       <HangmanWord word={hangmanWord} guessedLetters={guessedLetters} />
-      <Keypad />
+      <Keypad word={hangmanWord} guessedLetters={guessedLetters} />
     </div>
   );
 }
