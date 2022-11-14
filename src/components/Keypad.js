@@ -47,7 +47,7 @@ export default function Keypad({ word, guessedLetters }) {
   };
 
   return (
-    <div className="border-2 mt-4 mx-1 block h-1/4">
+    <div className=" mt-2 mx-1 block h-1/4">
       <div className="flex w-full mx-auto my-1">
         {firstRowLetters &&
           firstRowLetters.map((l) => {

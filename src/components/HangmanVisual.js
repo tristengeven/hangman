@@ -92,8 +92,8 @@ const BODY_PARTS = [HEAD, BODY, R_ARM, L_ARM, R_LEG, L_LEG];
 
 export default function HangmanVisual({ incorrectGuesses }) {
   return (
-    <div className="border-2 mt-2 mx-1 block h-2/5">
-      <div className="w-[275px] h-full border-2 mx-auto">
+    <div className=" mt-2 mx-1 block h-2/5">
+      <div className="w-[275px] h-full  mx-auto">
         <div className="relative">
           {/* hanging bar */}
           <div
@@ -103,14 +103,14 @@ export default function HangmanVisual({ incorrectGuesses }) {
               background: "black",
               position: "absolute",
               marginTop: "10px",
-              marginLeft: "170px",
+              marginLeft: "174px",
             }}
           />
           {/* top cross bar */}
           <div
             style={{
               height: "10px",
-              width: "100px",
+              width: "104px",
               background: "black",
               marginLeft: "80px",
               marginTop: "30px",

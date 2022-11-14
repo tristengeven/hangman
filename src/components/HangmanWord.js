@@ -2,7 +2,7 @@ import React from "react";
 
 export default function HangmanWord({ word, guessedLetters }) {
   return (
-    <div className="border-2 mt-1 mx-auto h-[15%] flex justify-center gap-2 text-5xl uppercase">
+    <div className=" mt-1 mx-auto h-[15%] flex justify-center gap-2 text-5xl uppercase">
       {word.split("").map((letter, index) => (
         <div
           key={index}
