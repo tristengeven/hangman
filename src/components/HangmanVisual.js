@@ -65,38 +65,34 @@ const R_LEG = (
       height: "10px",
       background: "black",
       position: "absolute",
-      top: "100px",
-      right: "-90px",
+      top: "160px",
+      right: "21px",
       rotate: "60deg",
       transformOrigin: "left bottom",
     }}
-  >
-    r_leg
-  </div>
+  ></div>
 );
 const L_LEG = (
   <div
     key="L_LEG"
     style={{
-      width: "100px",
+      width: "80px",
       height: "10px",
       background: "black",
       position: "absolute",
-      top: "210px",
-      right: 0,
+      top: "160px",
+      right: "91px",
       rotate: "-60deg",
       transformOrigin: "right bottom",
     }}
-  >
-    l_leg
-  </div>
+  ></div>
 );
 
 const BODY_PARTS = [HEAD, BODY, R_ARM, L_ARM, R_LEG, L_LEG];
 
 export default function HangmanVisual({ incorrectGuesses }) {
   return (
-    <div className="border-2 mt-4 mx-1 block h-2/5">
+    <div className="border-2 mt-2 mx-1 block h-2/5">
       <div className="w-[275px] h-full border-2 mx-auto">
         <div className="relative">
           {/* hanging bar */}
